@@ -1,0 +1,52 @@
+/* pdfStyles.module.css */
+body {
+    font-family: 'Aptos', sans-serif;
+    line-height: 0.5;
+    color: #0a0000;
+}
+
+.estimate {
+    font-size: 50px;
+    text-align: center;
+    background: black;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.hr1 {
+    border: none;
+    background: black;
+    height: 5px;
+}
+
+.entName {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.contacts {
+    text-align: center;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.location {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.total {
+    width: 200px;
+}
+
+.underline {
+  display: inline-block;
+  width: 200px;
+  border-bottom: 1px solid #000;
+  margin-left: 5px;
+}
+
+
+
