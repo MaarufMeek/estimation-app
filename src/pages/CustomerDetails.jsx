@@ -109,7 +109,7 @@ const CustomerDetails = () => {
                     <div className="col-lg-6 mb-4">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">
+                                <h4 className="card-title fw-bold">
                                     <i className="bi bi-file-earmark-text-fill me-2"></i>
                                     Contract
                                 </h4>
@@ -124,6 +124,8 @@ const CustomerDetails = () => {
                                             <i className="bi bi-geo-fill me-2"></i>
                                             <strong>Site:</strong> {customer.contract.site}
                                         </p>
+
+
                                     </div>
                                 ) : (
                                     <p className="text-muted">No contract available.</p>

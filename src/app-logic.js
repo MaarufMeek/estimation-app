@@ -115,9 +115,26 @@ export class Customers {
 
         this.customers.push(newCustomer);
         this.saveCustomersToLocalStorage();
-
-        console.log(newCustomer);
     }
+
+   deleteCustomer(cusId) {
+    if (!cusId) {
+        showToast("Invalid customer ID", 'error');
+        return;
+    }
+
+    const index = this.customers.findIndex(customer => customer.id === cusId);
+    console.log(index, this.customers[index])
+
+    if (index !== -1) { // Check if a valid index is found
+        this.customers.splice(index, 1); // Remove the customer
+        this.saveCustomersToLocalStorage();
+        showToast('Customer deleted!', 'success');
+    } else {
+        showToast('Customer not found!', 'error');
+    }
+}
+
 
     addEstimate(customerId, itemName, quantity, unitPrice) {
         const customer = this.customers.find(cus => cus.id === customerId);

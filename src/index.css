@@ -90,6 +90,16 @@
     background: rgb(47, 47, 47);
 }
 
+.card button{
+    padding: 1px 2px;
+    border: none;
+}
+
+.card button:hover {
+    background: white;
+    border: none;
+}
+
 .edit-form {
     position: fixed;
     top: 50%;

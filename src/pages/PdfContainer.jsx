@@ -13,7 +13,7 @@ const PDFContainer = ({customer, estimateEntries}) => {
         color: 'white',
         textAlign: 'center',
         padding: '1px',
-        fontWeight: 'lighter',
+        fontWeight: 'bold',
         border: '1px solid black',
     };
 

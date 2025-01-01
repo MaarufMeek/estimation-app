@@ -4,10 +4,13 @@ import CustomerGrid from "../components/CustomerGrid.jsx";
 import Toast from "../components/Toast.jsx";
 import React, { useState } from "react";
 import { Customers } from "../app-logic.js";
+import ConfirmDeleteModal from "../components/ConfirmDeleteModal.jsx";
 
 const Home = () => {
     const [customers, setCustomers] = useState(new Customers());
     const [showCustomerForm, setShowCustomerForm] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedId, setSelectedId] = useState('');
 
     const toggleFormVisibility = () => {
         setShowCustomerForm(!showCustomerForm);
@@ -19,6 +22,19 @@ const Home = () => {
 
         // Update the state to trigger a re-render
         setCustomers(new Customers(customers.customers));
+    };
+
+    const handleDeleteCustomer = (id) => {
+        setShowModal(true)
+        setSelectedId(id)
+    }
+
+     const confirmDelete = () => {
+        setShowModal(false);
+        customers.deleteCustomer(selectedId)
+        setCustomers(new Customers(customers.customers))
+
+
     };
 
     return (
@@ -35,11 +51,17 @@ const Home = () => {
                     )}
                     <div className={`col-12 ${showCustomerForm ? "col-md-8" : "col-md-12"} my-1`}>
                         <div className="rs-margin">
-                            <CustomerGrid customers={customers.customers} showCustomerForm={showCustomerForm} />
+                            <CustomerGrid customers={customers.customers}
+                                          showCustomerForm={showCustomerForm}
+                                          onDeleteCustomer={handleDeleteCustomer} />
                         </div>
                     </div>
                 </div>
             </div>
+            <ConfirmDeleteModal show={showModal}
+                                onClose={() => setShowModal(false)}
+                                onConfirm={confirmDelete}
+            />
             <Toast />
         </>
     );
