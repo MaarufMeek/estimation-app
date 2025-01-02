@@ -1,41 +1,32 @@
 import {useEffect, useState} from "react";
 
 
-const CustomerEdit = ({
-                          onSubmitEdit,
-                          customerId,
-                          onClose,
-                          initialCustomertName,
-                          initialCustomerContact,
-                          initialCustomerAddress,
-                         
-
-                      }) => {
+const CustomerEdit = (p) => {
     const [customerName, setCustomerName] = useState("");
     const [customerContact, setCustomerContact] = useState('');
     const [customerAddress, setCustomerAddress] = useState('');
 
     useEffect(() => {
-        setCustomerName(initialCustomertName || "");
-        setCustomerContact(initialCustomerContact || "");
-        setCustomerAddress(initialCustomerAddress || "");
-    }, [initialCustomertName, initialCustomerContact, initialCustomerAddress]);
+        setCustomerName(p.initialCustomertName || "");
+        setCustomerContact(p.initialCustomerContact || "");
+        setCustomerAddress(p.initialCustomerAddress || "");
+    }, [p.initialCustomertName, p.initialCustomerContact, p.initialCustomerAddress]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        onSubmitEdit(customerId, customerName, customerContact, customerAddress);
+        p.onSubmitEdit(p.customerId, customerName, customerContact, customerAddress);
         setCustomerName('');
         setCustomerContact('');
         setCustomerAddress('');
 
-        onClose(false)
+        p.onClose(false)
     };
 
     return (
         <>
             <div className="edit-form">
-                <span className="close-btn" id="closeBtn" role="button" onClick={() => onClose(false)}>&times;</span>
+                <span className="close-btn" id="closeBtn" role="button" onClick={() => p.onClose(false)}>&times;</span>
                 <form className="g-2 align-items-center mt-2 mb-5" onSubmit={handleSubmit}>
                     {/* Item Name */}
                     <h3 className="text-center">Edit Customer</h3>

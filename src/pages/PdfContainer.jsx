@@ -1,8 +1,8 @@
-import React from 'react';
+import 'react';
 
 import styles from '../pdfStyles.module.css'
 
-const PDFContainer = ({customer, estimateEntries}) => {
+const PDFContainer = (p) => {
     const cellStyle = {
         padding: '1px 6px',
         border: '1px solid black',
@@ -33,15 +33,15 @@ const PDFContainer = ({customer, estimateEntries}) => {
             <div className="d-flex align-content-between justify-content-between">
                 <div>
                     <p className="my-0 mt-1 fw-bolder">Estimate for:</p>
-                    <p className="my-0 mt-1">Customer Name: <strong>{customer.name}</strong></p>
-                    <p className="my-0">Contact: <strong>{customer.contact}</strong></p>
-                    <p className="my-0">Address: <strong>{customer.address}</strong></p>
+                    <p className="my-0 mt-1">Customer Name: <strong>{p.customer.name}</strong></p>
+                    <p className="my-0">Contact: <strong>{p.customer.contact}</strong></p>
+                    <p className="my-0">Address: <strong>{p.customer.address}</strong></p>
                 </div>
                 <div className="text-end">
                     <p className="my-0 mt-1 fw-bolder">Project Details</p>
-                    <p className="my-0 mt-1">Project Name: <strong>{customer.contract.name}</strong></p>
-                    <p className="my-0">Description: <strong>{customer.contract.description}</strong></p>
-                    <p className="my-0">site: <strong>{customer.contract.site}</strong></p>
+                    <p className="my-0 mt-1">Project Name: <strong>{p.customer.contract.name}</strong></p>
+                    <p className="my-0">Description: <strong>{p.customer.contract.description}</strong></p>
+                    <p className="my-0">site: <strong>{p.customer.contract.site}</strong></p>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@ const PDFContainer = ({customer, estimateEntries}) => {
                     </tr>
                     </thead>
                     <tbody className="fs-6">
-                    {estimateEntries.map((entry, index) => (
+                    {p.estimateEntries.map((entry, index) => (
                         <tr key={index}>
                             <td style={{...cellStyle, width: '20px'}}>{index + 1}</td>
                             <td style={{...cellStyle, width: '45%', minWidth: '100px'}}>{entry.itemName}</td>
@@ -100,7 +100,7 @@ const PDFContainer = ({customer, estimateEntries}) => {
                 <div className={styles.total}>
                     <h3 className="mt-3">Total</h3>
                     <h3 className="text-end bg-dark text-white fs-3 p-2">
-                        GHS {estimateEntries.reduce((total, entry) =>
+                        GHS {p.estimateEntries.reduce((total, entry) =>
                         total + entry.total, 0).toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2

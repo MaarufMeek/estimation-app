@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CustomerForm = ({ onSubmit }) => {
+const CustomerForm = (p) => {
     const [formData, setFormData] = useState({
         name: "",
         contact: "",
@@ -18,7 +18,7 @@ const CustomerForm = ({ onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (onSubmit) onSubmit(formData);
+        if (p.onSubmit) p.onSubmit(formData);
 
         // Reset the form
         setFormData({

@@ -1,24 +1,16 @@
 import {useEffect, useState} from "react";
 
 
-const EstimateEdit = ({
-                          onSubmitEdit,
-                          customerId,
-                          entryId,
-                          onClose,
-                          initialItemName,
-                          initialQuantity,
-                          initialUnitPrice
-                      }) => {
+const EstimateEdit = (p) => {
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState(0);
     const [unitPrice, setUnitPrice] = useState(0);
 
      useEffect(() => {
-        setItemName(initialItemName || "");
-        setQuantity(initialQuantity || 0);
-        setUnitPrice(initialUnitPrice || 0);
-    }, [initialItemName, initialQuantity, initialUnitPrice]);
+        setItemName(p.initialItemName || "");
+        setQuantity(p.initialQuantity || 0);
+        setUnitPrice(p.initialUnitPrice || 0);
+    }, [p.initialItemName, p.initialQuantity, p.initialUnitPrice]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,18 +20,18 @@ const EstimateEdit = ({
             return;
         }
 
-        onSubmitEdit(customerId, entryId, itemName, quantity, unitPrice);
+        p.onSubmitEdit(p.customerId, p.entryId, itemName, quantity, unitPrice);
         setItemName('');
         setQuantity(0);
         setUnitPrice(0);
 
-        onClose(false)
+        p.onClose(false)
     };
 
     return (
         <>
             <div className="edit-form">
-                <span className="close-btn" id="closeBtn" role="button" onClick={() => onClose(false)}>&times;</span>
+                <span className="close-btn" id="closeBtn" role="button" onClick={() => p.onClose(false)}>&times;</span>
                 <form className="g-2 align-items-center mt-2 mb-5" onSubmit={handleSubmit}>
                     {/* Item Name */}
                     <h3 className="text-center">Edit Entry</h3>

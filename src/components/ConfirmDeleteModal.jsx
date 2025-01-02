@@ -1,7 +1,7 @@
-import React from 'react';
+import 'react';
 
-const ConfirmDeleteModal = ({show, onClose, onConfirm}) => {
-    if (!show) return null;
+const ConfirmDeleteModal = (p) => {
+    if (!p.show) return null;
 
     return (
         <div className="modal d-block" tabIndex="-1"
@@ -17,7 +17,7 @@ const ConfirmDeleteModal = ({show, onClose, onConfirm}) => {
                             type="button"
                             className="btn-close"
                             aria-label="Close"
-                            onClick={onClose}
+                            onClick={p.onClose}
                         ></button>
                     </div>
                     <div className="modal-body">
@@ -27,14 +27,14 @@ const ConfirmDeleteModal = ({show, onClose, onConfirm}) => {
                         <button
                             type="button"
                             className="btn btn-danger"
-                            onClick={onConfirm}
+                            onClick={p.onConfirm}
                         >
                             Delete
                         </button>
                         <button
                             type="button"
                             className="btn btn-secondary"
-                            onClick={onClose}
+                            onClick={p.onClose}
                         >
                             Cancel
                         </button>

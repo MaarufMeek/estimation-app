@@ -1,8 +1,8 @@
-import React from "react";
+import "react";
 import "../index.css"
 
 
-const EstimatesTable = ({estimateEntries, onDeleteEntry, onClickEdit,customerId}) => {
+const EstimatesTable = (p) => {
 
 
     return (
@@ -22,7 +22,7 @@ const EstimatesTable = ({estimateEntries, onDeleteEntry, onClickEdit,customerId}
                     </tr>
                 </thead>
                 <tbody>
-                    {estimateEntries.map((entry, index) => (
+                    {p.estimateEntries.map((entry, index) => (
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{entry.itemName}</td>
@@ -31,12 +31,12 @@ const EstimatesTable = ({estimateEntries, onDeleteEntry, onClickEdit,customerId}
                             <td>{entry.total}</td>
                             <td className="text-end">
                                 <button className="btn btn-success btn-sm me-3"
-                                        onClick={() => onClickEdit(customerId, entry.id)}>
+                                        onClick={() => p.onClickEdit(p.customerId, entry.id)}>
                                     <i className="bi bi-pencil-fill"></i>
                                     <span className="d-none d-md-inline ms-2">Edit</span>
                                 </button>
                                 <button className="btn btn-danger btn-sm"
-                                        onClick={() => onDeleteEntry(customerId, entry.id)}>
+                                        onClick={() => p.onDeleteEntry(p.customerId, entry.id)}>
                                     <i className="bi bi-trash-fill"></i>
                                     <span className="d-none d-md-inline ms-2">Delete</span>
                                 </button>

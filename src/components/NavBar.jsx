@@ -1,4 +1,4 @@
-function NavBar({onAddCustomer, onShowCustomer}) {
+function NavBar(p) {
 
     return (
         <nav className="navbar bg-body fixed-top">
@@ -8,11 +8,11 @@ function NavBar({onAddCustomer, onShowCustomer}) {
                     <button
                         className="btn btn-sm btn-dark"
                         id="add-customer"
-                        onClick={onAddCustomer}
+                        onClick={p.onAddCustomer}
                     >
-                        <i className={`bi ${onShowCustomer ? 'bi-chevron-up' : 'bi-person-plus-fill'}`}></i>
+                        <i className={`bi ${p.onShowCustomer ? 'bi-chevron-up' : 'bi-person-plus-fill'}`}></i>
                         <span className="ms-2">
-                            {onShowCustomer ? 'Close form' : 'Add customer'}
+                            {p.onShowCustomer ? 'Close form' : 'Add customer'}
                         </span>
                     </button>
                     <button className="btn btn-sm btn-dark" id="clear">Clear</button>

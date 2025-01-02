@@ -1,44 +1,35 @@
 import {useEffect, useState} from "react";
 
 
-const ContractEdit = ({
-                          onSubmitEdit,
-                          customerId,
-                          onClose,
-                          initialContractName,
-                          initialContractDescription,
-                          initialContractSite,
-                          initialContractDate
-
-                      }) => {
+const ContractEdit = (p) => {
     const [contractName, setContractName] = useState("");
     const [contractDescription, setContractDescription] = useState('');
     const [contractSite, setContractSite] = useState('');
     const [contractDate, setContractDate] = useState('');
 
     useEffect(() => {
-        setContractName(initialContractName || "");
-        setContractDescription(initialContractDescription || "");
-        setContractSite(initialContractSite || "");
-        setContractDate(initialContractDate || '');
-    }, [initialContractName, initialContractDescription, initialContractSite, initialContractDate]);
+        setContractName(p.initialContractName || "");
+        setContractDescription(p.initialContractDescription || "");
+        setContractSite(p.initialContractSite || "");
+        setContractDate(p.initialContractDate || '');
+    }, [p.initialContractName, p.initialContractDescription, p.initialContractSite, p.initialContractDate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        onSubmitEdit(customerId, contractName, contractDescription, contractSite, contractDate);
+        p.onSubmitEdit(p.customerId, contractName, contractDescription, contractSite, contractDate);
         setContractName('');
         setContractDescription('');
         setContractSite('');
         setContractDate('');
 
-        onClose(false)
+        p.onClose(false)
     };
 
     return (
         <>
             <div className="edit-form">
-                <span className="close-btn" id="closeBtn" role="button" onClick={() => onClose(false)}>&times;</span>
+                <span className="close-btn" id="closeBtn" role="button" onClick={() => p.onClose(false)}>&times;</span>
                 <form className="g-2 align-items-center mt-2 mb-5" onSubmit={handleSubmit}>
                     {/* Item Name */}
                     <h3 className="text-center">Edit Contract</h3>

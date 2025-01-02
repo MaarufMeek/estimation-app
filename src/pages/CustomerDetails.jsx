@@ -9,7 +9,6 @@ import PDFContainer from "./PdfContainer.jsx";
 import GeneratePDFButton from "../components/GenereatePdfButton.jsx";
 import ContractEdit from "../components/ContractEdit.jsx";
 import CustomerEdit from "../components/CustomerEdit.jsx";
-import Button from "bootstrap/js/src/button.js";
 
 const CustomerDetails = () => {
     const {id} = useParams();  // Getting the customer id from the URL params
@@ -283,7 +282,6 @@ const CustomerDetails = () => {
                     <PDFContainer customer={customer} estimateEntries={estimateEntries}/>
                     <GeneratePDFButton customer={customer}/>
                 </>
-
             }
 
         </>

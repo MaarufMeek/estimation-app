@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar.jsx";
 import CustomerForm from "../components/CustomerForm.jsx";
 import CustomerGrid from "../components/CustomerGrid.jsx";
 import Toast from "../components/Toast.jsx";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Customers } from "../app-logic.js";
 import ConfirmDeleteModal from "../components/ConfirmDeleteModal.jsx";
 

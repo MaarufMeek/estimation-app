@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../details.css"
-const EstimateForm = ({ customerId, onAddEstimation }) => {
+const EstimateForm = (x) => {
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState(0);
     const [unitPrice, setUnitPrice] = useState(0);
@@ -13,7 +13,7 @@ const EstimateForm = ({ customerId, onAddEstimation }) => {
             return;
         }
 
-        onAddEstimation(customerId, itemName, quantity, unitPrice);
+        x.onAddEstimation(x.customerId, itemName, quantity, unitPrice);
         setItemName('');
         setQuantity(0);
         setUnitPrice(0);

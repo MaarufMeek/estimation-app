@@ -1,15 +1,15 @@
-import React from "react";
+import "react";
 import { Link } from "react-router-dom"; // Import Link to enable navigation
 
-const CustomerGrid = ({ customers, showCustomerForm, onDeleteCustomer}) => {
-    const colClass = showCustomerForm ? "col-12 col-md-6" : "col-12 col-md-4";
+const CustomerGrid = (p) => {
+    const colClass = p.showCustomerForm ? "col-12 col-md-6" : "col-12 col-md-4";
 
-    if(customers.length === 0) return <h3 className="text-center">No customers. Add customers</h3>
+    if(p.customers.length === 0) return <h3 className="text-center">No customers. Add customers</h3>
 
     return (
         <div className="row">
             {/*<h1>Customers</h1>*/}
-            {customers.map((cus) => (
+            {p.customers.map((cus) => (
                 <div className={`${colClass} my-2`} key={cus.id}>
                     <div className="card">
                         <div className="card-body fs-6">
@@ -18,7 +18,7 @@ const CustomerGrid = ({ customers, showCustomerForm, onDeleteCustomer}) => {
                                     <i className="bi bi-person-fill me-2"></i>
                                     {cus.name}
                                 </h3>
-                                <button className="btn " onClick={() => onDeleteCustomer(cus.id)}>
+                                <button className="btn " onClick={() => p.onDeleteCustomer(cus.id)}>
                                     <i className="bi bi-trash text-danger fs-5 "></i>
                                 </button >
                             </div>
