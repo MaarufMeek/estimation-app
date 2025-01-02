@@ -73,7 +73,7 @@ const EstimateForm = ({ customerId, onAddEstimation }) => {
 
             {/* Submit Button */}
             <div className="col-12 col-md-2 d-grid">
-                <label htmlFor="submit" className="form-label ">Button</label>
+                <label htmlFor="submit" className="form-label">&nbsp;</label>
                 <button type="submit" className="btn btn-dark">
                     <i className="bi bi-check-circle me-2" id="submit"></i>Submit
                 </button>

@@ -9,6 +9,7 @@ import PDFContainer from "./PdfContainer.jsx";
 import GeneratePDFButton from "../components/GenereatePdfButton.jsx";
 import ContractEdit from "../components/ContractEdit.jsx";
 import CustomerEdit from "../components/CustomerEdit.jsx";
+import Button from "bootstrap/js/src/button.js";
 
 const CustomerDetails = () => {
     const {id} = useParams();  // Getting the customer id from the URL params
@@ -16,9 +17,10 @@ const CustomerDetails = () => {
     const [showEstimateForm, setShowEstimateForm] = useState(false)
     const [showEstimateEditForm, setShowEstimateEditForm] = useState(false)
     const [showCustomerEditForm, setShowCustomerEditForm] = useState(false)
+    const [showContractEditForm, setShowContractEditForm] = useState(false)
+    const [showEstimateSheet, setShowEstimateSheet] = useState(false);
     const [entryToEditCustomerId, setEntryToEditCustomerId] = useState('');
     const [entryToEditId, setEntryToEditId] = useState('');
-    const [showContratEditForm, setShowContractEditForm] = useState(false)
     const customer = customers.customers.find(cus => cus.id === id);
     const estimateEntries = customer.contract.estimationEntries;
 
@@ -57,7 +59,7 @@ const CustomerDetails = () => {
 
     //get contract id from after clicking edit button on contract details card
     const handleContractEditClick = () => {
-         if (!customer) {
+        if (!customer) {
             console.error("Customer not found.");
             return;
         }
@@ -66,7 +68,7 @@ const CustomerDetails = () => {
 
     //get customer id after clicking edit button on customer details card, show edit form
     const handleCustomerEditClick = () => {
-        if(!customer) {
+        if (!customer) {
             console.error("Customer not found")
             return;
         }
@@ -83,14 +85,18 @@ const CustomerDetails = () => {
         setCustomers(new Customers(customers.customers))
     }
 
-    const handleEditCustomer =  (customerId, newName, newContact, newAddress) =>{
-        customers.editCustomer(customerId,newName,newContact, newAddress);
+    const handleEditCustomer = (customerId, newName, newContact, newAddress) => {
+        customers.editCustomer(customerId, newName, newContact, newAddress);
         setCustomers(new Customers(customers.customers))
     }
 
     const handShowEstimateForm = () => {
         setShowEstimateForm(!showEstimateForm);
     };
+
+    const handleShowEstimateSheet = () => {
+        setShowEstimateSheet(!showEstimateSheet)
+    }
 
 
     if (!customer) {
@@ -152,10 +158,10 @@ const CustomerDetails = () => {
                     <div className="col-lg-6 mb-4">
                         <div className="card">
                             <div className="card-body">
-                            <h4 className="card-title fw-bold">
-                                        <i className="bi bi-file-earmark-text-fill me-2"></i>
-                                        Contract
-                                    </h4>
+                                <h4 className="card-title fw-bold">
+                                    <i className="bi bi-file-earmark-text-fill me-2"></i>
+                                    Contract
+                                </h4>
                                 <hr className="mt-0"/>
                                 {customer.contract ? (
                                     <div>
@@ -167,7 +173,7 @@ const CustomerDetails = () => {
                                             <i className="bi bi-geo-fill me-2"></i>
                                             <strong>Site:</strong> {customer.contract.site}
                                         </p>
-                                         <p>
+                                        <p>
                                             <i className="bi bi-calendar-date me-2"></i>
                                             <strong>Date:</strong> {formatDate(customer.contract.date)}
                                         </p>
@@ -191,7 +197,7 @@ const CustomerDetails = () => {
                 <div className="row mt-3">
                     <div className="col text-center">
                         <button
-                            className="btn btn-dark btn-lg"
+                            className="btn btn-dark"
                             onClick={handShowEstimateForm} // Example usage
                         >
                             <i className="bi bi-calculator-fill me-2"></i>
@@ -222,6 +228,19 @@ const CustomerDetails = () => {
                     <EstimateForm customerId={customer.id} onAddEstimation={handleAddEstimate}/>
                 )}
 
+                {/*show estimate sheet button*/}
+                {estimateEntries.length !== 0 &&
+                    <div className="d-flex align-items-center justify-content-center"
+                         style={{marginTop: '50px', marginBottom: '50px'}}
+                    >
+                        <button
+                            className=" btn btn-dark"
+                            onClick={handleShowEstimateSheet}
+                        > {!showEstimateSheet ? 'Show Estimate Sheet' : 'Hide Estimate Sheet'}</button>
+                    </div>
+                }
+
+
                 {showEstimateEditForm && entryToEdit &&
                     <EstimateEdit
                         onSubmitEdit={handleEditEstimate}
@@ -234,7 +253,7 @@ const CustomerDetails = () => {
                     />
                 }
 
-                {showContratEditForm && customer.id &&
+                {showContractEditForm && customer.id &&
                     <ContractEdit
                         onSubmitEdit={handleEditContract}
                         customerId={customer.id}
@@ -258,8 +277,15 @@ const CustomerDetails = () => {
                 }
                 <Toast/>
             </div>
-            <PDFContainer customer={customer} estimateEntries={estimateEntries} />
-            <GeneratePDFButton customer={customer} />
+
+            {estimateEntries.length !== 0 && showEstimateSheet &&
+                <>
+                    <PDFContainer customer={customer} estimateEntries={estimateEntries}/>
+                    <GeneratePDFButton customer={customer}/>
+                </>
+
+            }
+
         </>
     )
         ;
