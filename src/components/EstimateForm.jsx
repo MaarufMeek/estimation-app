@@ -20,7 +20,9 @@ const EstimateForm = ({ customerId, onAddEstimation }) => {
     };
 
     return (
-        <form className="row g-2 align-items-center mt-2 mb-5" onSubmit={handleSubmit}>
+        <form className="row g-2 align-items-center mt-2 mb-5"
+              onSubmit={handleSubmit}
+        >
             {/* Item Name */}
             <div className="col-12 col-md-4">
                 <label htmlFor="itemName" className="form-label">

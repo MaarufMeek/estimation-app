@@ -1,27 +1,30 @@
 import {useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import {Customers} from "../app-logic.js";
+import {Customers, formatDate} from "../app-logic.js";
 import EstimateForm from "../components/EstimateForm.jsx";
 import Toast from "../components/Toast.jsx";
 import EstimatesTable from "../components/EstimatesTable.jsx";
 import EstimateEdit from "../components/EstimateEdit.jsx";
 import PDFContainer from "./PdfContainer.jsx";
 import GeneratePDFButton from "../components/GenereatePdfButton.jsx";
+import ContractEdit from "../components/ContractEdit.jsx";
+import CustomerEdit from "../components/CustomerEdit.jsx";
 
 const CustomerDetails = () => {
     const {id} = useParams();  // Getting the customer id from the URL params
     const [customers, setCustomers] = useState(new Customers())
     const [showEstimateForm, setShowEstimateForm] = useState(false)
     const [showEstimateEditForm, setShowEstimateEditForm] = useState(false)
+    const [showCustomerEditForm, setShowCustomerEditForm] = useState(false)
     const [entryToEditCustomerId, setEntryToEditCustomerId] = useState('');
     const [entryToEditId, setEntryToEditId] = useState('');
+    const [showContratEditForm, setShowContractEditForm] = useState(false)
     const customer = customers.customers.find(cus => cus.id === id);
     const estimateEntries = customer.contract.estimationEntries;
 
     const entryToEdit = customer.contract.estimationEntries.find(
         (entry) => entry.id === entryToEditId
     );
-
 
     const handleAddEstimate = (customerId, itemName, quantity, unitPrice) => {
         if (!customer || !customer.contract) {
@@ -41,19 +44,47 @@ const CustomerDetails = () => {
         setCustomers(new Customers(customers.customers)); // Trigger a state update to refresh the component
     };
 
-    const handleEditClick = (customerId, entryId) => {
+    //get entry and customer ids after clicking on edit button in estimate table
+    const handleEstimatEditClick = (customerId, entryId) => {
         if (!customer || !customer.contract) {
             console.error("Customer or contract not found.");
             return;
         }
         setEntryToEditCustomerId(customerId);
         setEntryToEditId(entryId);
-        console.log(entryToEditCustomerId, entryToEditId)
         setShowEstimateEditForm(true)
+    }
+
+    //get contract id from after clicking edit button on contract details card
+    const handleContractEditClick = () => {
+         if (!customer) {
+            console.error("Customer not found.");
+            return;
+        }
+        setShowContractEditForm(true)
+    }
+
+    //get customer id after clicking edit button on customer details card, show edit form
+    const handleCustomerEditClick = () => {
+        if(!customer) {
+            console.error("Customer not found")
+            return;
+        }
+        setShowCustomerEditForm(true)
     }
 
     const handleEditEstimate = (customerId, id, newItem, newQuantity, newPrice) => {
         customers.editEstimationEntry(customerId, id, newItem, newQuantity, newPrice);
+        setCustomers(new Customers(customers.customers))
+    }
+
+    const handleEditContract = (customerId, newName, newDescription, newSite, newDate) => {
+        customers.editContract(customerId, newName, newDescription, newSite, newDate)
+        setCustomers(new Customers(customers.customers))
+    }
+
+    const handleEditCustomer =  (customerId, newName, newContact, newAddress) =>{
+        customers.editCustomer(customerId,newName,newContact, newAddress);
         setCustomers(new Customers(customers.customers))
     }
 
@@ -88,19 +119,31 @@ const CustomerDetails = () => {
                     <div className="col-lg-6 mb-4">
                         <div className="card">
                             <div className="card-body">
-                                <h3 className="card-title">
+                                <h4 className="card-title fw-bold mt-1 mb-2">
                                     <i className="bi bi-person-fill me-2"></i>
-                                    {customer.name}
-                                </h3>
-                                <hr/>
-                                <p className="card-text">
+                                    Customer
+                                </h4>
+                                <hr className="mt-0"/>
+                                <p className="card-text mb-2">
+                                    <i className="bi bi-person-circle me-2"></i>
+                                    <strong>Name:</strong> {customer.name}
+                                </p>
+                                <p className="card-text mb-2">
                                     <i className="bi bi-telephone-fill me-2"></i>
                                     <strong>Contact:</strong> {customer.contact}
                                 </p>
-                                <p className="card-text">
+
+                                <p className="card-text mb-2">
                                     <i className="bi bi-geo-alt-fill me-2"></i>
                                     <strong>Address:</strong> {customer.address}
                                 </p>
+                                <div className="edit-contract mt-0">
+                                    <button
+                                        className="mb-1"
+                                        onClick={() => handleCustomerEditClick(customer.id)}>
+                                        <i className="bi bi-pencil-fill pt-1 pb-1 pe-3 ps-3"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,22 +152,30 @@ const CustomerDetails = () => {
                     <div className="col-lg-6 mb-4">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title fw-bold">
-                                    <i className="bi bi-file-earmark-text-fill me-2"></i>
-                                    Contract
-                                </h4>
-                                <hr/>
+                            <h4 className="card-title fw-bold">
+                                        <i className="bi bi-file-earmark-text-fill me-2"></i>
+                                        Contract
+                                    </h4>
+                                <hr className="mt-0"/>
                                 {customer.contract ? (
                                     <div>
                                         <p className="mb-1">
                                             <i className="bi bi-text-paragraph me-2"></i>
                                             <strong>Description:</strong> {customer.contract.description}
                                         </p>
-                                        <p>
+                                        <p className="mb-1">
                                             <i className="bi bi-geo-fill me-2"></i>
                                             <strong>Site:</strong> {customer.contract.site}
                                         </p>
-
+                                         <p>
+                                            <i className="bi bi-calendar-date me-2"></i>
+                                            <strong>Date:</strong> {formatDate(customer.contract.date)}
+                                        </p>
+                                        <div className="edit-contract">
+                                            <button className="my-1" onClick={() => handleContractEditClick()}>
+                                                <i className="bi bi-pencil-fill pt-1 pb-1 pe-3 ps-3"></i>
+                                            </button>
+                                        </div>
 
                                     </div>
                                 ) : (
@@ -159,7 +210,7 @@ const CustomerDetails = () => {
                             estimateEntries={estimateEntries}
                             onDeleteEntry={handleDeleteEstimate}
                             customerId={customer.id}
-                            onClickEdit={handleEditClick}
+                            onClickEdit={handleEstimatEditClick}
                         />
                     </>
                     :
@@ -183,6 +234,28 @@ const CustomerDetails = () => {
                     />
                 }
 
+                {showContratEditForm && customer.id &&
+                    <ContractEdit
+                        onSubmitEdit={handleEditContract}
+                        customerId={customer.id}
+                        onClose={setShowContractEditForm}
+                        initialContractName={customer.contract.name}
+                        initialContractDescription={customer.contract.description}
+                        initialContractSite={customer.contract.site}
+                        initialContractDate={customer.contract.date}
+                    />
+                }
+
+                {showCustomerEditForm && customer &&
+                    <CustomerEdit
+                        onSubmitEdit={handleEditCustomer}
+                        customerId={customer.id}
+                        onClose={setShowCustomerEditForm}
+                        initialCustomertName={customer.name}
+                        initialCustomerContact={customer.contact}
+                        initialCustomerAddress={customer.address}
+                    />
+                }
                 <Toast/>
             </div>
             <PDFContainer customer={customer} estimateEntries={estimateEntries} />

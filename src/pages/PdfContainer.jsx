@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import styles from '../pdfStyles.module.css'
 
@@ -6,7 +6,9 @@ const PDFContainer = ({customer, estimateEntries}) => {
     const cellStyle = {
         padding: '1px 6px',
         border: '1px solid black',
-        fontSize: '14px'
+        fontSize: '14px',
+        borderCollapse: 'collapse',
+        borderWidth: '1px',
     };
     const tbTh = {
         backgroundColor: 'rgb(0, 0, 0)',
@@ -15,6 +17,8 @@ const PDFContainer = ({customer, estimateEntries}) => {
         padding: '1px',
         fontWeight: 'bold',
         border: '1px solid black',
+        borderCollapse: 'collapse',
+        borderWidth: '1px',
     };
 
 

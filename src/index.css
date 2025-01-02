@@ -1,3 +1,9 @@
+
+* {
+    box-sizing: border-box;
+}
+
+
 .ls-panel {
     margin: 0;
     border-radius: 10px;
@@ -32,7 +38,6 @@
     background: rgb(72, 72, 72);
     color: white;
 }
-
 
 
 .scrollable-table th:first-child {
@@ -72,7 +77,7 @@
     transition: transform 0.3s ease;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.11),
     0 1px 2px rgba(0, 0, 0, 0.11);
-    z-index: 9999;
+    z-index: 999;
 
 }
 
@@ -90,7 +95,7 @@
     background: rgb(47, 47, 47);
 }
 
-.card button{
+.card button {
     padding: 1px 2px;
     border: none;
 }
@@ -98,6 +103,26 @@
 .card button:hover {
     background: white;
     border: none;
+}
+
+.edit-contract {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+
+.edit-contract button {
+    background: none;
+}
+
+.edit-contract i {
+    color: white;
+    background: rgba(3, 126, 67, 0.78);
+    border-radius: 5px;
+}
+
+.edit-contract i:hover {
+    background: #047c48;
 }
 
 .edit-form {
@@ -149,7 +174,7 @@
     transition: 0.2s;
 }
 
-.close-btn:hover{
+.close-btn:hover {
     color: red;
 }
 

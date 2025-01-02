@@ -41,12 +41,27 @@ body {
     width: 200px;
 }
 
+table {}
+th, td {
+
+}
+
 .underline {
   display: inline-block;
   width: 200px;
   border-bottom: 1px solid #000;
   margin-left: 5px;
 }
+
+@media print {
+    table {
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+    }
+}
+
 
 
 

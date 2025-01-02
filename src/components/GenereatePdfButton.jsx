@@ -7,14 +7,15 @@ const GeneratePDFButton = ({customer}) => {
 
         const options = {
             margin: 0.5,
-            filename: `${customer.name}_Estimate.pdf`,
-            image: {type: 'jpeg', quality: 1.0}, // Maximize quality
-            html2canvas: {scale: 8}, // Increase the scale for higher resolution
+            filename: `${customer.name}_estimate.pdf`,
+            image: {type: 'jpeg', quality: 0.98}, // Maximize quality
+            html2canvas: {scale: 6}, // Increase the scale for higher resolution
             jsPDF: {unit: 'in', format: 'A4', orientation: 'portrait'},
+            worker: true,
         };
 
-
         html2pdf().set(options).from(element).save();
+
     };
 
     return (

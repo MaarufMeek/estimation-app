@@ -1,4 +1,5 @@
 import {Toast} from "bootstrap";
+import {useState} from "react";
 
 export function showToast(message, type = "info") {
     const toastElement = document.getElementById("toast");
@@ -211,7 +212,7 @@ export class Customers {
             return;
         }
 
-        const {contract} = customer;
+        const contract = customer.contract;
         if (!contract) {
             console.error('Contract not found');
             return;
@@ -256,5 +257,13 @@ export class Customers {
     }
 
 }
+
+export const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+};
+
+
+
 
 
