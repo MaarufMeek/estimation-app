@@ -25,7 +25,7 @@ const EstimateForm = (x) => {
               id="estimate-form"
         >
             {/* Item Name */}
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-md-4 fw-bold">
                 <label htmlFor="itemName" className="form-label">
                     Item Name
                 </label>
@@ -41,7 +41,7 @@ const EstimateForm = (x) => {
             </div>
 
             {/* Quantity */}
-            <div className="col-12 col-md-3">
+            <div className="col-12 col-md-3 fw-bold">
                 <label htmlFor="quantity" className="form-label">
                     Quantity
                 </label>
@@ -57,7 +57,7 @@ const EstimateForm = (x) => {
             </div>
 
             {/* Unit Price */}
-            <div className="col-12 col-md-3">
+            <div className="col-12 col-md-3 fw-bold">
                 <label htmlFor="unitPrice" className="form-label">
                     Unit Price
                 </label>

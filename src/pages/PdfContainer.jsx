@@ -128,7 +128,7 @@ const PDFContainer = (p) => {
                 <div className={styles.total}>
                     <h3 className="mt-3">Total</h3>
                     <h3 className="text-end bg-dark text-white fs-3 p-2">
-                        GHS {p.estimateEntries.reduce((total, entry) =>
+                        <span className="fs-6">GHS</span> {p.estimateEntries.reduce((total, entry) =>
                         total + entry.total, 0).toLocaleString(undefined, {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2

@@ -1,5 +1,6 @@
 import 'react';
 import html2pdf from 'html2pdf.js';
+import { saveAs } from 'file-saver';
 
 const GeneratePDFButton = (p) => {
     const generatePDF = () => {
@@ -8,15 +9,22 @@ const GeneratePDFButton = (p) => {
         const options = {
             margin: 0.85,
             filename: `${p.customer.name}_estimate.pdf`,
-            image: {type: 'jpeg', quality: 0.98}, // Maximize quality
-            html2canvas: {scale: 3}, // Increase the scale for higher resolution
-            jsPDF: {unit: 'in', format: 'A4', orientation: 'portrait'},
-            border: 0.5,
-            worker: true,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 3 }, // Increase the scale for higher resolution
+            jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' },
         };
 
-        html2pdf().set(options).from(element).save();
-
+        html2pdf()
+            .set(options)
+            .from(element)
+            .outputPdf('blob') // Output as a Blob
+            .then((pdfBlob) => {
+                // Use FileSaver.js to download the file
+                saveAs(pdfBlob, `${p.customer.name}_estimate.pdf`);
+            })
+            .catch((err) => {
+                console.error('PDF generation failed:', err);
+            });
     };
 
     return (

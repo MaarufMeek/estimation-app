@@ -294,10 +294,9 @@ const CustomerDetails = () => {
             {estimateEntries.length !== 0 && showEstimateSheet &&
                 <>
                     <PDFContainer customer={customer} estimateEntries={estimateEntries}/>
-                    <GeneratePDFButton customer={customer}/>
+                    <GeneratePDFButton  customer={customer}/>
                 </>
             }
-
         </>
     )
         ;
