@@ -15,6 +15,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "convertapi-js": "~1.1",
     "html2pdf.js": "^0.10.2",
     "icons": "^1.0.0",
     "jspdf": "^2.5.2",
@@ -36,6 +37,3 @@
     "vite": "^6.0.5"
   }
 }
-
-
-

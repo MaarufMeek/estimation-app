@@ -18,7 +18,7 @@ const CustomerGrid = (p) => {
                                     <i className="bi bi-person-fill me-2"></i>
                                     {cus.name}
                                 </h3>
-                                <button className="btn " onClick={() => p.onDeleteCustomer(cus.id)}>
+                                <button className="btn icon-btn" onClick={() => p.onDeleteCustomer(cus.id)}>
                                     <i className="bi bi-trash text-danger fs-5 "></i>
                                 </button >
                             </div>

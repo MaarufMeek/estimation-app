@@ -6,11 +6,12 @@ const GeneratePDFButton = (p) => {
         const element = document.getElementById('pdf-content');
 
         const options = {
-            margin: 0.5,
+            margin: 0.85,
             filename: `${p.customer.name}_estimate.pdf`,
             image: {type: 'jpeg', quality: 0.98}, // Maximize quality
-            html2canvas: {scale: 6}, // Increase the scale for higher resolution
+            html2canvas: {scale: 3}, // Increase the scale for higher resolution
             jsPDF: {unit: 'in', format: 'A4', orientation: 'portrait'},
+            border: 0.5,
             worker: true,
         };
 
@@ -28,7 +29,6 @@ const GeneratePDFButton = (p) => {
                 Download Estimates as PDF
             </button>
         </div>
-
     );
 };
 

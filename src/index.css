@@ -44,7 +44,6 @@
     min-width: 20px;
 }
 
-
 .scrollable-table th:nth-child(2) {
     min-width: 300px;
 }
@@ -54,7 +53,7 @@
 }
 
 .scrollable-table th:nth-child(4) {
-    min-width: 150px;
+    min-width: 200px;
 }
 
 .scrollable-table th:nth-child(5) {
@@ -177,6 +176,7 @@
 .close-btn:hover {
     color: red;
 }
+
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {

@@ -1,10 +1,9 @@
 import {Toast} from "bootstrap";
-import {useState} from "react";
+
 
 export function showToast(message, type = "info") {
     const toastElement = document.getElementById("toast");
     const toastBody = toastElement.querySelector(".toast-body");
-
 
     toastBody.textContent = message;
 
@@ -42,7 +41,7 @@ export class Customer {
     }
 }
 
-
+// contract object
 const Contract = (name, description, site, date) => ({
     name,
     description,
@@ -262,6 +261,13 @@ export const formatDate = (dateString) => {
     const [year, month, day] = dateString.split('-');
     return `${day}/${month}/${year}`;
 };
+
+export function scrollToSection(sectionID) {
+    const section = document.getElementById(sectionID);
+    section.scrollIntoView({behavior: 'smooth'});
+}
+
+
 
 
 

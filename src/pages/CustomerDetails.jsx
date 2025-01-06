@@ -1,6 +1,6 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import {Customers, formatDate} from "../app-logic.js";
+import {Customers, formatDate, scrollToSection} from "../app-logic.js";
 import EstimateForm from "../components/EstimateForm.jsx";
 import Toast from "../components/Toast.jsx";
 import EstimatesTable from "../components/EstimatesTable.jsx";
@@ -26,6 +26,17 @@ const CustomerDetails = () => {
     const entryToEdit = customer.contract.estimationEntries.find(
         (entry) => entry.id === entryToEditId
     );
+
+    //scroll to estimation entry from when make estimate button is clicked
+    useEffect(() => {
+        if(showEstimateForm) scrollToSection("estimate-form")
+    }, [showEstimateForm]);
+
+    //scroll to the estimate sheet when show estimate sheet button is clicked
+    useEffect(() => {
+        if(showEstimateSheet) scrollToSection("pdf-content")
+    }, [showEstimateSheet]);
+
 
     const handleAddEstimate = (customerId, itemName, quantity, unitPrice) => {
         if (!customer || !customer.contract) {
@@ -89,7 +100,7 @@ const CustomerDetails = () => {
         setCustomers(new Customers(customers.customers))
     }
 
-    const handShowEstimateForm = () => {
+    const handShowEstimateForm =  () => {
         setShowEstimateForm(!showEstimateForm);
     };
 
@@ -197,14 +208,17 @@ const CustomerDetails = () => {
                     <div className="col text-center">
                         <button
                             className="btn btn-dark"
-                            onClick={handShowEstimateForm} // Example usage
+                            onClick={() => {
+                                handShowEstimateForm();
+                            }
+                            } // Example usage
                         >
                             <i className="bi bi-calculator-fill me-2"></i>
                             {showEstimateForm ? 'Close Form' : 'Make Estimate'}
                         </button>
                     </div>
                 </div>
-                <p className="d-block d-sm-none text-center mt-5">
+                <p className="d-block d-lg-none text-center mt-5">
                     <span className="bi bi-arrow-left-circle me-2"></span>
                     Scroll left and right to see full table
                     <span className="bi bi-arrow-right-circle ms-2"></span>

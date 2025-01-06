@@ -2,8 +2,8 @@ import { useState } from "react";
 import "../details.css"
 const EstimateForm = (x) => {
     const [itemName, setItemName] = useState("");
-    const [quantity, setQuantity] = useState(0);
-    const [unitPrice, setUnitPrice] = useState(0);
+    const [quantity, setQuantity] = useState('');
+    const [unitPrice, setUnitPrice] = useState('');
 
      const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,13 +15,14 @@ const EstimateForm = (x) => {
 
         x.onAddEstimation(x.customerId, itemName, quantity, unitPrice);
         setItemName('');
-        setQuantity(0);
-        setUnitPrice(0);
+        setQuantity('');
+        setUnitPrice('');
     };
 
     return (
         <form className="row g-2 align-items-center mt-2 mb-5"
               onSubmit={handleSubmit}
+              id="estimate-form"
         >
             {/* Item Name */}
             <div className="col-12 col-md-4">
