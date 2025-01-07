@@ -55,10 +55,7 @@ const Contract = (name, description, site, date) => ({
             itemName,
             quantity,
             unitPrice,
-            total: (quantity * unitPrice).toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        }),
+            total: (quantity * unitPrice)
         };
         this.estimationEntries.push(entry);
     },
@@ -257,7 +254,6 @@ export class Customers {
         this.saveCustomersToLocalStorage();
         showToast('Estimation entry updated!', 'success');
     }
-
 }
 
 export const formatDate = (dateString) => {
@@ -269,10 +265,3 @@ export function scrollToSection(sectionID) {
     const section = document.getElementById(sectionID);
     section.scrollIntoView({behavior: 'smooth'});
 }
-
-
-
-
-
-
-

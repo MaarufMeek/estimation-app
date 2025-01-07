@@ -38,8 +38,14 @@ const EstimatesTable = (p) => {
                             <td>{startIndex + index + 1}</td>
                             <td>{entry.itemName}</td>
                             <td className="text-center">{entry.quantity}</td>
-                            <td className="text-center">{entry.unitPrice}</td>
-                            <td className="text-center">{entry.total}</td>
+                            <td className="text-center">{entry.unitPrice.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            })}</td>
+                            <td className="text-center">{entry.total.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            })}</td>
                             <td className="text-end">
                                 <button
                                     className="btn btn-success btn-sm me-3"

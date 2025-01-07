@@ -10,7 +10,7 @@ const GeneratePDFButton = (p) => {
         const element = document.getElementById("pdf-content");
 
         const options = {
-            margin: 0.85,
+            margin: 0.75,
             filename: `${p.customer.name}_estimate.pdf`,
             image: { type: "jpeg", quality: 0.98 },
             html2canvas: { scale: 5 },

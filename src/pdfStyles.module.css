@@ -57,6 +57,10 @@ th, td {
     font-size: 15px;
 }
 
+.cedi {
+    font-size: 0.8rem;
+}
+
 @media print {
     table {
         border-collapse: collapse;

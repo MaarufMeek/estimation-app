@@ -238,7 +238,10 @@ const CustomerDetails = () => {
 
                 {/* Estimate Form */}
                 {customer.contract && showEstimateForm && (
-                    <EstimateForm customerId={customer.id} onAddEstimation={handleAddEstimate}/>
+                    <EstimateForm
+                        customerId={customer.id}
+                        onAddEstimation={handleAddEstimate}
+                        onShowEstimateForm={showEstimateForm}/>
                 )}
 
                 {/*show estimate sheet button*/}

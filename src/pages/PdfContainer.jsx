@@ -2,8 +2,8 @@ import 'react';
 import styles from '../pdfStyles.module.css';
 
 const PDFContainer = (p) => {
-    const rowsPerPageFirst = 20;
-    const rowsPerPageOther = 30;
+    const rowsPerPageFirst = 21;
+    const rowsPerPageOther = 33;
 
     // Group rows into pages
     const groupedEntries = [];
@@ -83,10 +83,10 @@ const PDFContainer = (p) => {
                         <thead>
                         <tr>
                             <th style={tbTh}>#</th>
-                            <th style={tbTh}>Item Name</th>
+                            <th style={tbTh} >Item Name</th>
                             <th style={tbTh}>Quantity</th>
                             <th style={tbTh}>Unit Price</th>
-                            <th style={tbTh}>Total (GHS)</th>
+                            <th style={tbTh}>Total <span className={styles.cedi}>(GHS)</span></th>
                         </tr>
                         </thead>
                         <tbody className="fs-6">

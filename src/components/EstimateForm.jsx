@@ -1,23 +1,33 @@
-import { useState } from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import "../details.css"
 const EstimateForm = (x) => {
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState('');
     const [unitPrice, setUnitPrice] = useState('');
 
-     const handleSubmit = (e) => {
+    const itemRef = useRef(null);
+
+    useEffect(() => {
+        if(x.onShowEstimateForm) itemRef.current.focus();
+    }, [x.onShowEstimateForm]);
+
+     const handleSubmit = useCallback((e) => {
         e.preventDefault();
 
         if (!itemName || !quantity || !unitPrice) {
-            alert('All fields are required');
+            alert("All fields are required");
             return;
         }
 
+        // Call the parent handler
         x.onAddEstimation(x.customerId, itemName, quantity, unitPrice);
-        setItemName('');
-        setQuantity('');
-        setUnitPrice('');
-    };
+
+        // Reset fields and refocus
+        setItemName("");
+        setQuantity("");
+        setUnitPrice("");
+        itemRef.current.focus();
+    }, [itemName, quantity, unitPrice, x]);
 
     return (
         <form className="row g-2 align-items-center mt-2 mb-5"
@@ -32,6 +42,7 @@ const EstimateForm = (x) => {
                 <input
                     type="text"
                     className="form-control"
+                    ref={itemRef}
                     id="itemName"
                     placeholder="Item Name"
                     value={itemName}
