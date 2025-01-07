@@ -115,10 +115,10 @@ const CustomerDetails = () => {
     return (
         <>
             <div className="container mt-2">
-                <div className="text-end mt-3">
+                <div className="text-end mt-3 mb-3">
                     <Link
                         to="/"
-                        className="btn btn-dark fs-6"
+                        className="btn btn-dark fs-6 "
                     >
                         <i className="bi bi-house"></i> Home
                     </Link>
@@ -220,7 +220,7 @@ const CustomerDetails = () => {
                 </div>
                 <p className="d-block d-lg-none text-center mt-5">
                     <span className="bi bi-arrow-left-circle me-2"></span>
-                    Scroll left and right to see full table
+                    Swipe left and right to see full table
                     <span className="bi bi-arrow-right-circle ms-2"></span>
                 </p>
                 {estimateEntries && estimateEntries.length > 0 ?
@@ -298,8 +298,7 @@ const CustomerDetails = () => {
                 </>
             }
         </>
-    )
-        ;
+    );
 };
 
 export default CustomerDetails;

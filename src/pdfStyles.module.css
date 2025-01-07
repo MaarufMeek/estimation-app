@@ -53,6 +53,10 @@ th, td {
   margin-left: 5px;
 }
 
+.dFont {
+    font-size: 15px;
+}
+
 @media print {
     table {
         border-collapse: collapse;

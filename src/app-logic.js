@@ -55,7 +55,10 @@ const Contract = (name, description, site, date) => ({
             itemName,
             quantity,
             unitPrice,
-            total: quantity * unitPrice,
+            total: (quantity * unitPrice).toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }),
         };
         this.estimationEntries.push(entry);
     },
