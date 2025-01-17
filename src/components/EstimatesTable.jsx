@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "../index.css";
 
 const EstimatesTable = (p) => {
@@ -20,6 +20,7 @@ const EstimatesTable = (p) => {
     };
 
     return (
+        <>
         <div className="mt-3 scrollable-table">
             <table className="table">
                 <thead>
@@ -66,7 +67,8 @@ const EstimatesTable = (p) => {
                     ))}
                 </tbody>
             </table>
-            {/* Pagination Controls */}
+        </div>
+         {/* Pagination Controls */}
             <div className="d-flex justify-content-between align-items-center mt-2 mb-2">
                 <button
                     className="btn btn-dark btn-sm"
@@ -86,7 +88,7 @@ const EstimatesTable = (p) => {
                     Next
                 </button>
             </div>
-        </div>
+        </>
     );
 };
 

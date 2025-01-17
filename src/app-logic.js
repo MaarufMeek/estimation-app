@@ -1,32 +1,5 @@
 import {Toast} from "bootstrap";
 
-
-export function showToast(message, type = "info") {
-    const toastElement = document.getElementById("toast");
-    const toastBody = toastElement.querySelector(".toast-body");
-
-    toastBody.textContent = message;
-
-    // Set the toast color based on alert type
-    const toastHeader = toastElement.querySelector(".toast-header");
-    if (type === "success") {
-        toastHeader.classList.add("bg-success");
-        toastHeader.classList.remove("bg-danger", "bg-warning");
-    } else if (type === "error") {
-        toastHeader.classList.add("bg-danger");
-        toastHeader.classList.remove("bg-success", "bg-warning");
-    } else {
-        toastHeader.classList.add("bg-warning");
-        toastHeader.classList.remove("bg-danger", "bg-success");
-    }
-
-    // Show the toast using Bootstrap's Toast API
-    const toast = new Toast(toastElement, {
-        delay: 2000,
-    });
-    toast.show();
-}
-
 export class Customer {
     constructor(name, contact, address) {
         this.id = crypto.randomUUID();
@@ -117,23 +90,23 @@ export class Customers {
         this.saveCustomersToLocalStorage();
     }
 
-   deleteCustomer(cusId) {
-    if (!cusId) {
-        showToast("Invalid customer ID", 'error');
-        return;
-    }
+    deleteCustomer(cusId) {
+        if (!cusId) {
+            showToast("Invalid customer ID", 'error');
+            return;
+        }
 
-    const index = this.customers.findIndex(customer => customer.id === cusId);
-    console.log(index, this.customers[index])
+        const index = this.customers.findIndex(customer => customer.id === cusId);
+        console.log(index, this.customers[index])
 
-    if (index !== -1) { // Check if a valid index is found
-        this.customers.splice(index, 1); // Remove the customer
-        this.saveCustomersToLocalStorage();
-        showToast('Customer deleted!', 'success');
-    } else {
-        showToast('Customer not found!', 'error');
+        if (index !== -1) { // Check if a valid index is found
+            this.customers.splice(index, 1); // Remove the customer
+            this.saveCustomersToLocalStorage();
+            showToast('Customer deleted!', 'success');
+        } else {
+            showToast('Customer not found!', 'error');
+        }
     }
-}
 
 
     addEstimate(customerId, itemName, quantity, unitPrice) {
@@ -264,4 +237,30 @@ export const formatDate = (dateString) => {
 export function scrollToSection(sectionID) {
     const section = document.getElementById(sectionID);
     section.scrollIntoView({behavior: 'smooth'});
+}
+
+export function showToast(message, type = "info") {
+    const toastElement = document.getElementById("toast");
+    const toastBody = toastElement.querySelector(".toast-body");
+
+    toastBody.textContent = message;
+
+    // Set the toast color based on alert type
+    const toastHeader = toastElement.querySelector(".toast-header");
+    if (type === "success") {
+        toastHeader.classList.add("bg-success");
+        toastHeader.classList.remove("bg-danger", "bg-warning");
+    } else if (type === "error") {
+        toastHeader.classList.add("bg-danger");
+        toastHeader.classList.remove("bg-success", "bg-warning");
+    } else {
+        toastHeader.classList.add("bg-warning");
+        toastHeader.classList.remove("bg-danger", "bg-success");
+    }
+
+    // Show the toast using Bootstrap's Toast API
+    const toast = new Toast(toastElement, {
+        delay: 2000,
+    });
+    toast.show();
 }
