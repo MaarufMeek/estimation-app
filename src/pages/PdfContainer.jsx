@@ -50,6 +50,7 @@ const PDFContainer = (p) => {
 
     const calculateMarginBottomFirstPage = (totalRows) => {
         // Logic for first page
+        //adjust margin bottom dynamically to push Client Approval section to the next page.
         if (totalRows === 18) return '130px';
         if (totalRows === 19) return '100px';
         if (totalRows === 20) return '80px';
@@ -60,7 +61,9 @@ const PDFContainer = (p) => {
 
     const calculateMarginBottomRest = (totalRows) => {
         //Logic for subsequent pages
-        const baseRow = 34;
+        //adjust margin bottom dynamically to push Client Approval section to the next page.
+        const baseRow = 34;  //max row for rest of pages after the first page
+    
         let xsRowA = 18;
         let xsRowB = 19;
         let xsRowC = 20;
