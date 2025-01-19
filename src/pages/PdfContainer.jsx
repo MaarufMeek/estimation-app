@@ -9,9 +9,9 @@ const PDFContainer = (p) => {
     };
 
     const subsequentPageRows = (rows) => {
-        if (rows <= 26) return rows;
-        if (rows >= 27 && rows <= 33) return rows; // To fit 60px margin
-        return 34; // Default for larger rows
+        if (rows <= 25) return rows;
+        if (rows >= 26 && rows <= 32) return rows; // To fit 60px margin
+        return 33; // Default for larger rows
     };
 
     // Group rows into pages
@@ -62,7 +62,7 @@ const PDFContainer = (p) => {
     const calculateMarginBottomRest = (totalRows) => {
         //Logic for subsequent pages
         //adjust margin bottom dynamically to push Client Approval section to the next page.
-        const baseRow = 34;  //max row for rest of pages after the first page
+        const baseRow = 33;  //max row for rest of pages after the first page
     
         let xsRowA = 18;
         let xsRowB = 19;
@@ -84,7 +84,7 @@ const PDFContainer = (p) => {
             }
             if (totalRows === xsRowD + baseRow) {
                 xsRowD += baseRow; // Update xsRowD dynamically
-                return '60px';
+                return '50px';
             }
 
             totalRows -= baseRow; // Decrease totalRows to handle subsequent iterations
@@ -154,7 +154,7 @@ const PDFContainer = (p) => {
                         <tbody className="fs-6">
                         {entries.map((entry, index) => {
                             const rowIndex = pageIndex === 0 ? index + 1 :
-                                rowsForFirstPage + (pageIndex - 1) * 34 + (index + 1);
+                                rowsForFirstPage + (pageIndex - 1) * 33 + (index + 1);
 
                             return (
                                 <tr key={index}>

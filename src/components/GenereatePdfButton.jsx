@@ -40,7 +40,7 @@ const GeneratePDFButton = (p) => {
             >
                 {isLoading ? (
                     <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        <span className="spinner-border text-light me-2" role="status" aria-hidden="true"></span>
                         Generating PDF...
                     </>
                 ) : (
