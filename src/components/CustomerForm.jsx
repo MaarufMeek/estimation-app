@@ -50,15 +50,18 @@ const CustomerForm = (p) => {
             <div className="mb-3">
                 <label htmlFor="contact" className="form-label fw-bold">Contact</label>
                 <input
-                    type="text"
+                    type="tel"
                     placeholder="Contact"
+                    maxLength={10}
                     className="form-control"
                     id="contact"
                     name="contact"
                     value={formData.contact}
                     onChange={handleChange}
                     required
+                    pattern="[0-9]{10}"
                 />
+
             </div>
             <div className="mb-3">
                 <label htmlFor="address" className="form-label fw-bold">Address</label>
